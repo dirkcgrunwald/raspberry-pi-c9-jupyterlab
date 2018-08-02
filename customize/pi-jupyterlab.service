@@ -1,0 +1,14 @@
+[Unit]
+Description=start jupyterlab as user pi
+Before=dhcpcd.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi
+ExecStart=/home/pi/.local/bin/jupyter lab --ip="raspberrypi.local" --port=9090 --NotebookApp.token=''
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+Alias=pi-jupyterlab.service

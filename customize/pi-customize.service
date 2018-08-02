@@ -1,0 +1,13 @@
+[Unit]
+Description=copy config files from /boot
+Before=dhcpcd.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh -x /boot/customize/customize-network.sh
+ExecStartPost=/bin/chmod -R ugo+r /etc/network/interfaces.d
+
+[Install]
+WantedBy=multi-user.target
+Alias=pi-customize.service

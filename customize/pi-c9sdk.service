@@ -1,0 +1,14 @@
+[Unit]
+Description=start Cloud9SDK as user pi
+Before=dhcpcd.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/opt/c9sdk
+ExecStart=/opt/c9sdk/server.js -p 8080 -l 0.0.0.0 -a : -w /home/pi
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+Alias=pi-c9sdk.service
